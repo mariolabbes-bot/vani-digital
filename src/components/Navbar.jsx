@@ -33,7 +33,7 @@ export default function Navbar() {
                 height: 'var(--header-height)'
             }}>
                 <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={`${import.meta.env.BASE_URL}logo.png`} alt="VANI DIGITAL" style={{ height: '160px', objectFit: 'contain' }} />
+                    <img className="nav-logo" src={`${import.meta.env.BASE_URL}logo.png`} alt="VANI DIGITAL" />
                 </Link>
 
                 {/* Desktop Menu */}
@@ -84,9 +84,18 @@ export default function Navbar() {
             )}
 
             <style>{`
+        .nav-logo {
+            height: 160px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
         @media (max-width: 768px) {
           .desktop-menu { display: none !important; }
           .mobile-toggle { display: block !important; }
+          .nav-logo {
+              height: 130px; /* Ligeramente más pequeño para no solaparse con el botón en iPhone */
+              max-width: 250px;
+          }
         }
       `}</style>
         </nav>
