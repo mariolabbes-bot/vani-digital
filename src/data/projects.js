@@ -68,7 +68,7 @@ export const projects = [
     title: 'AXON CRM',
     description: 'Sistema integral para la gestión y administración de clientes.',
     longDescription: 'Anteriormente conocido como CRM2, AXON CRM es nuestra plataforma avanzada orientada a centralizar y optimizar la relación con los clientes, integrando flujos de apoyo y seguimiento.',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80', // CRM placeholder
+    image: '/axon-crm.png', // CRM local image
     link: '/projects/axon-crm',
     isExternal: false,
     status: 'En Desarrollo',
@@ -80,7 +80,7 @@ export const projects = [
     title: 'AXON LOGISTICS',
     description: 'Automatización y control de procesos en centros logísticos y última milla.',
     longDescription: 'Plataforma en desarrollo que automatiza el proceso de almacenamiento, optimiza las cargas y facilita la entrega en rutas logísticas de última milla.',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8ed7c82631?auto=format&fit=crop&w=800&q=80', // Logistics placeholder
+    image: '/axon-logistics.png', // Logistics local image
     link: '/projects/axon-logistics',
     isExternal: false,
     status: 'En Desarrollo',
