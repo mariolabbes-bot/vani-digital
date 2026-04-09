@@ -40,13 +40,13 @@ export const projects = [
     platforms: ['iOS', 'Android']
   },
   {
-    id: 'dropstore',
-    title: 'DROPSTORE',
+    id: 'nexus-find',
+    title: 'NEXUS FIND',
     description: 'Automatización de dropshipping sin problemas para el comercio electrónico moderno.',
-    longDescription: 'DropStore conecta a minoristas con proveedores al instante. Automatiza tu inventario, procesamiento de pedidos y seguimiento con nuestra solución de dropshipping todo en uno.',
+    longDescription: 'Nexus Find conecta a minoristas con proveedores al instante. Automatiza tu inventario, procesamiento de pedidos y seguimiento con nuestra solución de dropshipping todo en uno.',
     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&w=800&q=80', // E-commerce placeholder
-    link: '/projects/dropstore',
-    isExternal: false,
+    link: 'https://www.nexus-finds.com',
+    isExternal: true,
     status: 'En Desarrollo',
     features: ['Sincronización de Inventario', 'Automatización de Pedidos', 'Red de Proveedores'],
     platforms: ['Web']
@@ -62,5 +62,29 @@ export const projects = [
     status: 'En Desarrollo',
     features: ['Sincronización en Tiempo Real', 'Encriptación de Extremo a Extremo', 'Soporte Multiplataforma'],
     platforms: ['MacOS', 'Windows', 'Linux']
+  },
+  {
+    id: 'axon-crm',
+    title: 'AXON CRM',
+    description: 'Sistema integral para la gestión y administración de clientes.',
+    longDescription: 'Anteriormente conocido como CRM2, AXON CRM es nuestra plataforma avanzada orientada a centralizar y optimizar la relación con los clientes, integrando flujos de apoyo y seguimiento.',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80', // CRM placeholder
+    link: '/projects/axon-crm',
+    isExternal: false,
+    status: 'En Desarrollo',
+    features: ['Gestión de Clientes', 'Seguimiento de Ventas', 'Embudo Personalizado'],
+    platforms: ['Web', 'Mobile']
+  },
+  {
+    id: 'axon-logistics',
+    title: 'AXON LOGISTICS',
+    description: 'Automatización y control de procesos en centros logísticos y última milla.',
+    longDescription: 'Plataforma en desarrollo que automatiza el proceso de almacenamiento, optimiza las cargas y facilita la entrega en rutas logísticas de última milla.',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8ed7c82631?auto=format&fit=crop&w=800&q=80', // Logistics placeholder
+    link: '/projects/axon-logistics',
+    isExternal: false,
+    status: 'En Desarrollo',
+    features: ['Gestión de Almacenamiento', 'Control de Carga', 'Optimización de Última Milla'],
+    platforms: ['Web', 'Mobile']
   }
 ];

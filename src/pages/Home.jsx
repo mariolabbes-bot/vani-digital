@@ -1,9 +1,20 @@
 
+import { useRef } from 'react';
 import { projects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
-import { ArrowRight, Code, Database, Smartphone } from 'lucide-react';
+import { ArrowRight, Code, Database, Smartphone, ChevronLeft, ChevronRight, Settings } from 'lucide-react';
 
 export default function Home() {
+    const scrollRef = useRef(null);
+
+    const scroll = (direction) => {
+        if (scrollRef.current) {
+            const { current } = scrollRef;
+            const scrollAmount = direction === 'left' ? -current.offsetWidth : current.offsetWidth;
+            current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    };
+
     return (
         <>
             {/* Hero Section */}
@@ -42,30 +53,73 @@ export default function Home() {
             <section id="about" style={{ padding: '6rem 0', background: '#0a0a0a' }}>
                 <div className="container">
                     <h2 style={{ textAlign: 'center', marginBottom: '4rem' }}>Nuestra Experiencia</h2>
-                    <div className="grid grid-cols-3" style={{ gap: '2rem' }}>
-                        <div className="glass-card" style={{ textAlign: 'center', padding: '3rem 2rem' }}>
-                            <div style={{ color: 'var(--color-primary)', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-                                <Database size={48} />
+                    
+                    <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                        <button 
+                            onClick={() => scroll('left')}
+                            style={{
+                                position: 'absolute', left: '-2rem', zIndex: 10,
+                                background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%',
+                                width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                cursor: 'pointer', color: 'white', backdropFilter: 'blur(5px)'
+                            }}
+                        >
+                            <ChevronLeft />
+                        </button>
+
+                        <div 
+                            ref={scrollRef}
+                            style={{ 
+                                display: 'flex', gap: '2rem', overflowX: 'auto', 
+                                scrollSnapType: 'x mandatory', scrollbarWidth: 'none', msOverflowStyle: 'none',
+                                paddingBottom: '1rem', width: '100%'
+                            }}
+                            className="hide-scrollbar"
+                        >
+                            <div className="glass-card" style={{ flex: '0 0 auto', width: 'calc(33.333% - 1.33rem)', minWidth: '300px', scrollSnapAlign: 'start', textAlign: 'center', padding: '3rem 2rem' }}>
+                                <div style={{ color: 'var(--color-primary)', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+                                    <Database size={48} />
+                                </div>
+                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Big Data y Analítica</h3>
+                                <p>Herramientas de visualización y procesamiento de datos de última generación como DATASENSE para empoderar la toma de decisiones.</p>
                             </div>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Big Data y Analítica</h3>
-                            <p>Herramientas de visualización y procesamiento de datos de última generación como DATASENSE para empoderar la toma de decisiones.</p>
+
+                            <div className="glass-card" style={{ flex: '0 0 auto', width: 'calc(33.333% - 1.33rem)', minWidth: '300px', scrollSnapAlign: 'start', textAlign: 'center', padding: '3rem 2rem' }}>
+                                <div style={{ color: 'var(--color-accent)', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+                                    <Smartphone size={48} />
+                                </div>
+                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Aplicaciones Móviles y Web</h3>
+                                <p>Aplicaciones fluidas y de alto rendimiento para iOS, Android y Web utilizando frameworks de vanguardia.</p>
+                            </div>
+
+                            <div className="glass-card" style={{ flex: '0 0 auto', width: 'calc(33.333% - 1.33rem)', minWidth: '300px', scrollSnapAlign: 'start', textAlign: 'center', padding: '3rem 2rem' }}>
+                                <div style={{ color: '#ec4899', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+                                    <Code size={48} />
+                                </div>
+                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Desarrollo SaaS</h3>
+                                <p>Soluciones de Software como Servicio escalables diseñadas para el crecimiento, la seguridad y la fiabilidad empresarial.</p>
+                            </div>
+
+                            <div className="glass-card" style={{ flex: '0 0 auto', width: 'calc(33.333% - 1.33rem)', minWidth: '300px', scrollSnapAlign: 'start', textAlign: 'center', padding: '3rem 2rem' }}>
+                                <div style={{ color: '#10b981', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+                                    <Settings size={48} />
+                                </div>
+                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Gestión y Mantenimiento</h3>
+                                <p>Administración, mantención y desarrollo de puentes o aplicaciones auxiliares para dar soporte e interactuar con sistemas de clientes existentes.</p>
+                            </div>
                         </div>
 
-                        <div className="glass-card" style={{ textAlign: 'center', padding: '3rem 2rem' }}>
-                            <div style={{ color: 'var(--color-accent)', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-                                <Smartphone size={48} />
-                            </div>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Aplicaciones Móviles y Web</h3>
-                            <p>Aplicaciones fluidas y de alto rendimiento para iOS, Android y Web utilizando frameworks de vanguardia.</p>
-                        </div>
-
-                        <div className="glass-card" style={{ textAlign: 'center', padding: '3rem 2rem' }}>
-                            <div style={{ color: '#ec4899', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-                                <Code size={48} />
-                            </div>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Desarrollo SaaS</h3>
-                            <p>Soluciones de Software como Servicio escalables diseñadas para el crecimiento, la seguridad y la fiabilidad empresarial.</p>
-                        </div>
+                        <button 
+                            onClick={() => scroll('right')}
+                            style={{
+                                position: 'absolute', right: '-2rem', zIndex: 10,
+                                background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%',
+                                width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                cursor: 'pointer', color: 'white', backdropFilter: 'blur(5px)'
+                            }}
+                        >
+                            <ChevronRight />
+                        </button>
                     </div>
                 </div>
             </section>

@@ -32,15 +32,8 @@ export default function Navbar() {
                 alignItems: 'center',
                 height: 'var(--header-height)'
             }}>
-                <Link to="/" style={{
-                    fontSize: '1.5rem',
-                    fontWeight: 700,
-                    letterSpacing: '-0.03em',
-                    background: 'linear-gradient(to right, #fff, #a1a1aa)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
-                }}>
-                    VANI DIGITAL
+                <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src="/logo.png" alt="VANI DIGITAL" style={{ height: '40px', objectFit: 'contain' }} />
                 </Link>
 
                 {/* Desktop Menu */}
