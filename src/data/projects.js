@@ -44,7 +44,7 @@ export const projects = [
     title: 'NEXUS FIND',
     description: 'Automatización de dropshipping sin problemas para el comercio electrónico moderno.',
     longDescription: 'Nexus Find conecta a minoristas con proveedores al instante. Automatiza tu inventario, procesamiento de pedidos y seguimiento con nuestra solución de dropshipping todo en uno.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&w=800&q=80', // E-commerce placeholder
+    image: 'https://placehold.co/800x600/030014/22d3ee?text=NEXUS+FIND', // Placeholder estable
     link: 'https://www.nexus-finds.com',
     isExternal: true,
     status: 'En Desarrollo',
@@ -56,7 +56,7 @@ export const projects = [
     title: 'SYNC',
     description: 'Herramienta de sincronización universal para flujos de trabajo multiplataforma.',
     longDescription: 'Mantén tu vida digital en armonía. SYNC proporciona sincronización de archivos y datos sin esfuerzo en todos tus dispositivos con encriptación de extremo a extremo.',
-    image: 'https://images.unsplash.com/photo-1504384308090-c54be3852f33?auto=format&fit=crop&w=800&q=80', // Tech/Sync placeholder
+    image: 'https://placehold.co/800x600/030014/7c3aed?text=SYNC', // Placeholder estable
     link: '/projects/sync',
     isExternal: false,
     status: 'En Desarrollo',
@@ -68,7 +68,7 @@ export const projects = [
     title: 'AXON CRM',
     description: 'Sistema integral para la gestión y administración de clientes.',
     longDescription: 'Anteriormente conocido como CRM2, AXON CRM es nuestra plataforma avanzada orientada a centralizar y optimizar la relación con los clientes, integrando flujos de apoyo y seguimiento.',
-    image: '/axon-crm.png', // CRM local image
+    image: import.meta.env.BASE_URL + 'axon-crm.png', // CRM local image
     link: '/projects/axon-crm',
     isExternal: false,
     status: 'En Desarrollo',
@@ -80,7 +80,7 @@ export const projects = [
     title: 'AXON LOGISTICS',
     description: 'Automatización y control de procesos en centros logísticos y última milla.',
     longDescription: 'Plataforma en desarrollo que automatiza el proceso de almacenamiento, optimiza las cargas y facilita la entrega en rutas logísticas de última milla.',
-    image: '/axon-logistics.png', // Logistics local image
+    image: import.meta.env.BASE_URL + 'axon-logistics.png', // Logistics local image
     link: '/projects/axon-logistics',
     isExternal: false,
     status: 'En Desarrollo',
