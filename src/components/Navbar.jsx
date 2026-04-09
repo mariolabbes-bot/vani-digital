@@ -33,7 +33,7 @@ export default function Navbar() {
                 height: 'var(--header-height)'
             }}>
                 <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={`${import.meta.env.BASE_URL}logo.png`} alt="VANI DIGITAL" style={{ height: '40px', objectFit: 'contain' }} />
+                    <img src={`${import.meta.env.BASE_URL}logo.png`} alt="VANI DIGITAL" style={{ height: '200px', objectFit: 'contain' }} />
                 </Link>
 
                 {/* Desktop Menu */}
