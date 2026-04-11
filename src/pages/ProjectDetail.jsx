@@ -1,11 +1,24 @@
-
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { projects } from '../data/projects';
-import { ArrowLeft, CheckCircle, Download, ExternalLink } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Download, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function ProjectDetail() {
     const { id } = useParams();
     const project = projects.find(p => p.id === id);
+    const [currentImgIndex, setCurrentImgIndex] = useState(0);
+
+    const hasImages = project?.images && project.images.length > 0;
+
+    useEffect(() => {
+        if (!hasImages || project.images.length <= 1) return;
+
+        const interval = setInterval(() => {
+            setCurrentImgIndex((prev) => (prev + 1) % project.images.length);
+        }, 5000); // 5 seconds
+
+        return () => clearInterval(interval);
+    }, [hasImages, project?.images]);
 
     if (!project) {
         return (
@@ -17,6 +30,9 @@ export default function ProjectDetail() {
             </div>
         );
     }
+
+    const nextImg = () => setCurrentImgIndex((prev) => (prev + 1) % project.images.length);
+    const prevImg = () => setCurrentImgIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
 
     return (
         <div style={{ paddingTop: 'var(--header-height)' }}>
@@ -60,46 +76,73 @@ export default function ProjectDetail() {
                             {project.longDescription}
                         </p>
 
-                        <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Características Clave</h2>
-                        <div className="grid grid-cols-2" style={{ gap: '1.5rem' }}>
-                            {project.features.map((feature, i) => (
-                                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                    <CheckCircle size={20} color="var(--color-primary)" />
-                                    <span>{feature}</span>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div style={{ marginTop: '4rem' }}>
-                            <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Galería</h2>
-                            {project.images && project.images.length > 0 ? (
-                                <div className="grid grid-cols-3" style={{ gap: '1.5rem' }}>
-                                    {project.images.map((img, index) => (
-                                        <div key={index} className="image-wrapper" style={{ 
-                                            borderRadius: '12px', 
-                                            overflow: 'hidden',
-                                            height: '200px',
-                                            border: '1px solid rgba(255,255,255,0.1)'
-                                        }}>
-                                            <img 
-                                                src={img} 
-                                                alt={`${project.title} - Screenshot ${index + 1}`}
-                                                style={{ 
-                                                    width: '100%', 
-                                                    height: '100%', 
-                                                    objectFit: 'cover',
-                                                    cursor: 'pointer',
-                                                    transition: 'transform 0.3s ease'
-                                                }}
-                                                onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                                                onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                                            />
-                                        </div>
-                                    ))}
+                        {/* Interactive Showcase / Carousel */}
+                        <div style={{ marginBottom: '4rem' }}>
+                            <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Visualización del Proyecto</h2>
+                            {hasImages ? (
+                                <div className="glass-card" style={{ padding: '1rem', position: 'relative', overflow: 'hidden' }}>
+                                    <div style={{ 
+                                        height: '500px', 
+                                        width: '100%', 
+                                        borderRadius: '12px', 
+                                        overflow: 'hidden',
+                                        position: 'relative',
+                                        backgroundColor: '#000'
+                                    }}>
+                                        <img 
+                                            key={currentImgIndex}
+                                            src={project.images[currentImgIndex]} 
+                                            alt={`${project.title} slide`}
+                                            className="fade-in"
+                                            style={{ 
+                                                width: '100%', 
+                                                height: '100%', 
+                                                objectFit: 'contain',
+                                                animation: 'fadeIn 0.5s ease-out'
+                                            }}
+                                        />
+                                        
+                                        {project.images.length > 1 && (
+                                            <>
+                                                <button onClick={prevImg} style={{
+                                                    position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)',
+                                                    background: 'rgba(0,0,0,0.5)', border: 'none', borderRadius: '50%', width: '40px', height: '40px',
+                                                    color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+                                                    backdropFilter: 'blur(4px)'
+                                                }}>
+                                                    <ChevronLeft size={24} />
+                                                </button>
+                                                <button onClick={nextImg} style={{
+                                                    position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)',
+                                                    background: 'rgba(0,0,0,0.5)', border: 'none', borderRadius: '50%', width: '40px', height: '40px',
+                                                    color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+                                                    backdropFilter: 'blur(4px)'
+                                                }}>
+                                                    <ChevronRight size={24} />
+                                                </button>
+                                                
+                                                <div style={{
+                                                    position: 'absolute', bottom: '1rem', left: '50%', transform: 'translateX(-50%)',
+                                                    display: 'flex', gap: '0.5rem'
+                                                }}>
+                                                    {project.images.map((_, i) => (
+                                                        <div key={i} onClick={() => setCurrentImgIndex(i)} style={{
+                                                            width: i === currentImgIndex ? '24px' : '8px',
+                                                            height: '8px',
+                                                            borderRadius: '4px',
+                                                            background: i === currentImgIndex ? 'var(--color-primary)' : 'rgba(255,255,255,0.3)',
+                                                            cursor: 'pointer',
+                                                            transition: 'all 0.3s ease'
+                                                        }} />
+                                                    ))}
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
                                 </div>
                             ) : (
                                 <div style={{
-                                    height: '200px',
+                                    height: '300px',
                                     backgroundColor: '#1f1f22',
                                     borderRadius: '12px',
                                     display: 'flex',
@@ -108,9 +151,19 @@ export default function ProjectDetail() {
                                     color: '#52525b',
                                     border: '1px dashed #3f3f46'
                                 }}>
-                                    Galería próximamente disponible
+                                    Visualización próximamente disponible
                                 </div>
                             )}
+                        </div>
+
+                        <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Características Clave</h2>
+                        <div className="grid grid-cols-2" style={{ gap: '1.5rem' }}>
+                            {project.features.map((feature, i) => (
+                                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                    <CheckCircle size={20} color="var(--color-primary)" />
+                                    <span>{feature}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
 

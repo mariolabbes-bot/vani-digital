@@ -1,9 +1,23 @@
-
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, ArrowRight, Tag } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 
 export default function ProjectCard({ project }) {
     const isExternal = project.isExternal;
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const hasMultipleImages = project.images && project.images.length > 1;
+
+    useEffect(() => {
+        if (!hasMultipleImages) return;
+
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+        }, 4000); // 4 seconds
+
+        return () => clearInterval(interval);
+    }, [hasMultipleImages, project.images]);
+
+    const displayImage = hasMultipleImages ? project.images[currentImageIndex] : project.image;
 
     return (
         <div className="glass-card" style={{
@@ -18,12 +32,21 @@ export default function ProjectCard({ project }) {
                 width: '100%',
                 marginBottom: '1.5rem',
                 borderRadius: '12px',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                backgroundColor: '#1f1f22'
             }}>
                 <img
-                    src={project.image}
+                    key={displayImage}
+                    src={displayImage}
                     alt={project.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                    className="fade-in"
+                    style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'cover', 
+                        transition: 'transform 0.5s ease',
+                        animation: 'fadeIn 0.5s ease-out'
+                    }}
                 />
             </div>
 
