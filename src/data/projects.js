@@ -44,12 +44,17 @@ export const projects = [
     title: 'NEXUS FIND',
     description: 'Automatización de dropshipping sin problemas para el comercio electrónico moderno.',
     longDescription: 'Nexus Find conecta a minoristas con proveedores al instante. Automatiza tu inventario, procesamiento de pedidos y seguimiento con nuestra solución de dropshipping todo en uno.',
-    image: 'https://placehold.co/800x600/030014/22d3ee?text=NEXUS+FIND', // Placeholder estable
+    image: import.meta.env.BASE_URL + 'Nexus-miniatura-1.png',
     link: 'https://www.nexus-finds.com',
     isExternal: true,
     status: 'En Desarrollo',
     features: ['Sincronización de Inventario', 'Automatización de Pedidos', 'Red de Proveedores'],
-    platforms: ['Web']
+    platforms: ['Web'],
+    images: [
+      import.meta.env.BASE_URL + 'Nexus-miniatura-1.png',
+      import.meta.env.BASE_URL + 'Nexus-miniatura-2.png',
+      import.meta.env.BASE_URL + 'Nexus-miniatura-3.png'
+    ]
   },
   {
     id: 'sync',
@@ -68,12 +73,17 @@ export const projects = [
     title: 'AXON CRM',
     description: 'Sistema integral para la gestión y administración de clientes.',
     longDescription: 'Anteriormente conocido como CRM2, AXON CRM es nuestra plataforma avanzada orientada a centralizar y optimizar la relación con los clientes, integrando flujos de apoyo y seguimiento.',
-    image: import.meta.env.BASE_URL + 'axon-crm.png', // CRM local image
+    image: import.meta.env.BASE_URL + 'axon-crm-miniatura-1.png',
     link: '/projects/axon-crm',
     isExternal: false,
     status: 'En Desarrollo',
     features: ['Gestión de Clientes', 'Seguimiento de Ventas', 'Embudo Personalizado'],
-    platforms: ['Web', 'Mobile']
+    platforms: ['Web', 'Mobile'],
+    images: [
+      import.meta.env.BASE_URL + 'axon-crm-miniatura-1.png',
+      import.meta.env.BASE_URL + 'axon-crm-miniatura-2.png',
+      import.meta.env.BASE_URL + 'axon-crm-miniatura-3.png'
+    ]
   },
   {
     id: 'axon-logistics',

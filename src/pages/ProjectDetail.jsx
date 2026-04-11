@@ -72,17 +72,45 @@ export default function ProjectDetail() {
 
                         <div style={{ marginTop: '4rem' }}>
                             <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Galería</h2>
-                            <div style={{
-                                height: '400px',
-                                backgroundColor: '#1f1f22',
-                                borderRadius: '12px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: '#52525b'
-                            }}>
-                                [Marcador de Posición para Capturas de Pantalla]
-                            </div>
+                            {project.images && project.images.length > 0 ? (
+                                <div className="grid grid-cols-3" style={{ gap: '1.5rem' }}>
+                                    {project.images.map((img, index) => (
+                                        <div key={index} className="image-wrapper" style={{ 
+                                            borderRadius: '12px', 
+                                            overflow: 'hidden',
+                                            height: '200px',
+                                            border: '1px solid rgba(255,255,255,0.1)'
+                                        }}>
+                                            <img 
+                                                src={img} 
+                                                alt={`${project.title} - Screenshot ${index + 1}`}
+                                                style={{ 
+                                                    width: '100%', 
+                                                    height: '100%', 
+                                                    objectFit: 'cover',
+                                                    cursor: 'pointer',
+                                                    transition: 'transform 0.3s ease'
+                                                }}
+                                                onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                                                onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div style={{
+                                    height: '200px',
+                                    backgroundColor: '#1f1f22',
+                                    borderRadius: '12px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: '#52525b',
+                                    border: '1px dashed #3f3f46'
+                                }}>
+                                    Galería próximamente disponible
+                                </div>
+                            )}
                         </div>
                     </div>
 
