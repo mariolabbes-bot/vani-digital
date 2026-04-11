@@ -90,15 +90,14 @@ export default function ProjectDetail() {
                                         backgroundColor: '#000'
                                     }}>
                                         <img 
-                                            key={currentImgIndex}
-                                            src={project.images[currentImgIndex]} 
+                                            key={hasImages ? currentImgIndex : 'static'}
+                                            src={hasImages ? project.images[currentImgIndex] : project.image} 
                                             alt={`${project.title} slide`}
-                                            className="fade-in"
                                             style={{ 
                                                 width: '100%', 
                                                 height: '100%', 
                                                 objectFit: 'contain',
-                                                animation: 'fadeIn 0.5s ease-out'
+                                                animation: hasImages && project.images.length > 1 ? 'fadeInQuick 0.3s ease-in-out' : 'none'
                                             }}
                                         />
                                         

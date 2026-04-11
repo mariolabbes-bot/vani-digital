@@ -12,7 +12,7 @@ export default function ProjectCard({ project }) {
 
         const interval = setInterval(() => {
             setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
-        }, 4000); // 4 seconds
+        }, 5000); // 5 seconds visibility
 
         return () => clearInterval(interval);
     }, [hasMultipleImages, project.images]);
@@ -36,16 +36,15 @@ export default function ProjectCard({ project }) {
                 backgroundColor: '#1f1f22'
             }}>
                 <img
-                    key={displayImage}
+                    key={hasMultipleImages ? currentImageIndex : 'static'}
                     src={displayImage}
                     alt={project.title}
-                    className="fade-in"
                     style={{ 
                         width: '100%', 
                         height: '100%', 
                         objectFit: 'cover', 
                         transition: 'transform 0.5s ease',
-                        animation: 'fadeIn 0.5s ease-out'
+                        animation: hasMultipleImages ? 'fadeInQuick 0.3s ease-in-out' : 'none'
                     }}
                 />
             </div>

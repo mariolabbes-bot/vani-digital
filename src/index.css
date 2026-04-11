@@ -148,6 +148,11 @@ p {
   }
 }
 
+@keyframes fadeInQuick {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
 .glass-card {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
